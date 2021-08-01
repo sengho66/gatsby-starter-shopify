@@ -6,6 +6,7 @@ import { LineItemSide } from "../components/line-item-side"
 import { StoreContext } from "../context/store-context"
 import { Table,
   Thead,
+  Heading,
   Tbody,
   Tfoot,
   Tr,
@@ -63,16 +64,28 @@ export function CartButton({ quantity }) {
             >
               <DrawerOverlay />
               <DrawerContent>
-                <DrawerCloseButton />
-                <DrawerHeader>Your Cart</DrawerHeader>
-      
-                <DrawerBody size="sm">
+                <DrawerHeader marginBottom="-13px" paddingLeft="19px" paddingBottom="0" paddingRight="19px" paddingTop="5px" alignItems="center" justifyContent="space-between" display="flex"><Heading lineHeight="1.1" as="h2" fontSize="1.25rem">Your Cart{quantity}</Heading>
+                <DrawerCloseButton position="unset" />
+                </DrawerHeader>      
+                <DrawerBody paddingLeft="19px" paddingRight="19px" size="sm">
+                {emptyCart ? (
+                  <div>
+                    <h1>Your cart is empty</h1>
+                    <p>
+                    Looks like you haven’t found anything yet. We understand that
+                    sometimes it’s hard to chose — maybe this helps:
+                    </p>
+                    <Link to="/search?s=BEST_SELLING">
+                    View trending products
+                    </Link>
+                    </div>
+                  ) : (
+                <>  
                 <Table borderBottom="1px" borderColor="gray.100" size="sm">
         <Thead>
           <Tr>
-            <Th paddingLeft="0">Product</Th>
-            <Th textAlign="center" paddingLeft="12px" paddingRight="0">Qty.</Th>
-            <Th textAlign="right" paddingRight="0" paddingLeft="0">Remove</Th>
+            <Th paddingLeft="0"></Th>
+            <Th textAlign="right" paddingRight="0" paddingLeft="0"></Th>
           </Tr>
         </Thead>
         <Tbody>
@@ -83,14 +96,28 @@ export function CartButton({ quantity }) {
         </Tbody>
       
       </Table>
+      
+      </>
+      )}
                 </DrawerBody>
       
                 <DrawerFooter>
+                {emptyCart ? (
                   <Button variant="outline" mr={3} onClick={onClose}>
+                  Cancel
+                </Button>
+                  ) : (
+                <>
+                <Button variant="outline" mr={3} onClick={onClose}>
                     Cancel
                   </Button>
-                  <Button colorScheme="blue">Save</Button>
+                  <Button variant="outline" mr={3} onClick={onClose}>
+                    Save
+                  </Button>
+                </>
+      )}                  
                 </DrawerFooter>
+                
               </DrawerContent>
             </Drawer>
             </>

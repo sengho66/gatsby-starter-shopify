@@ -1,5 +1,4 @@
 import * as React from "react"
-import { Link } from "gatsby"
 import { StoreContext } from "../context/store-context"
 import Logo from "../icons/logo"
 import { Navigation } from "./navigation"
@@ -15,6 +14,10 @@ import {
 } from "./header.module.css"
 import {
   chakra,
+  Link,
+  InputGroup,
+  InputLeftElement,
+  Input,
   Box,
   Flex,
   useColorModeValue,
@@ -25,8 +28,9 @@ import {
   VStack,
   IconButton,
   CloseButton,
+  ChakraProvider,
 } from "@chakra-ui/react";
-import { AiOutlineMenu } from "react-icons/ai";
+import {   AiOutlineSearch, AiOutlineMenu } from "react-icons/ai";
 
 export function Header() {
   const bg = useColorModeValue("white", "gray.800");
@@ -114,15 +118,73 @@ export function Header() {
           <HStack display={{ base: "none", md: "flex" }} alignItems="center" spacing={1}>
             <HStack
               spacing={1}
-              mr={1}
-              color="brand.500"
+              color="gray.600"
+              fontWeight="bold"
+              fontSize="md"
               display={{ base: "none", md: "inline-flex" }}
             >
-              <Button variant="ghost">Features</Button>
-              <Button variant="ghost">Pricing</Button>
-              <Button variant="ghost">Blog</Button>
-              <Button variant="ghost">Company</Button>
-              <Button variant="ghost">Sign in</Button>
+              <Button
+                  bg={bg}
+                  color="#585c5c"
+                  fontWeight="bold"
+                  display="inline-flex"
+                  alignItems="center"
+                  fontSize="md"
+                  _hover={{ color: "cyan.500" }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                  Blog
+                </Button>
+                <Button
+                  bg={bg}
+                  color="#585c5c"
+                  fontWeight="bold"
+                  display="inline-flex"
+                  alignItems="center"
+                  fontSize="md"
+                  _hover={{ color: "cyan.500" }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                  Blog
+                </Button>
+                <Button
+                  bg={bg}
+                  color="#585c5c"
+                  fontWeight="bold"
+                  display="inline-flex"
+                  alignItems="center"
+                  fontSize="md"
+                  _hover={{ color: "cyan.500" }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                  Blog
+                </Button>
+                <Button
+                  bg={bg}
+                  color="#585c5c"
+                  fontWeight="bold"
+                  display="inline-flex"
+                  alignItems="center"
+                  fontSize="md"
+                  _hover={{ color: "cyan.500" }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                  Blog
+                </Button>
+                <Button
+                  as="a"
+                  bg={bg}
+                  color="#585c5c"
+                  fontWeight="bold"
+                  display="inline-flex"
+                  alignItems="center"
+                  href="/"
+                  fontSize="md"
+                  _hover={{ color: "cyan.500" }}
+                  _focus={{ boxShadow: "none" }}
+                >
+                  Blog
+                </Button>
             </HStack>
           </HStack>
           <CartButton quantity={quantity} />

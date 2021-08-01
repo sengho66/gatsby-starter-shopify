@@ -1,8 +1,8 @@
 .addToCart {
   display: flex;
   flex-direction: row;
-  color: var(--text-color-inverted);
-  background-color: var(--primary);
+  color: #171923;
+  background-color: #F6E05E;
   align-self: flex-end;
   padding: var(--space-sm) var(--space-xl);
   border-radius: var(--radius-md);

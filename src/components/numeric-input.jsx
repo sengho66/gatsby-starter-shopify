@@ -10,12 +10,7 @@ export function NumericInput({
 }) {
   return (
     <div className={wrap}>
-      <input
-        disabled={disabled}
-        type="numeric"
-        className={[input, className].join(" ")}
-        {...props}
-      />
+
       <button
         disabled={disabled}
         className={increment}
@@ -25,6 +20,14 @@ export function NumericInput({
         <span>+</span>
         <MdArrowDropUp />
       </button>
+
+      <input
+        disabled={disabled}
+        type="numeric"
+        className={[input, className].join(" ")}
+        {...props}
+      />
+      
       <button
         disabled={disabled}
         className={decrement}

@@ -6,17 +6,19 @@
 
 .container {
   padding: var(--size-gutter-raw);
+  padding-top: 1.3rem;
 }
 
 .header {
   font-size: var(--text-display);
   font-weight: var(--bold);
-  margin-bottom: var(--space-xl);
+  margin-bottom: -7;
   line-height: var(--dense);
 }
 
 .productDescription {
-  font-size: var(--text-prose);
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .productImageWrapper {
@@ -54,11 +56,21 @@
 }
 
 .priceValue > span {
-  font-size: var(--text-display);
+  font-size: 1.15rem;
   font-weight: var(--bold);
   line-height: var(--dense);
-  color: var(--primary);
+  color: #171923;
+  padding-left: 15px;
+  padding-right: 15px;
+  background-color: #F6E05E;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
+
+h2.priceValue {
+  display: inline-block;
+}
+
 
 .priceValue {
   padding: var(--space-lg) 0;

@@ -8,7 +8,9 @@ import { AddToCart } from "../../../components/add-to-cart"
 import { NumericInput } from "../../../components/numeric-input"
 import { formatPrice } from "../../../utils/format-price"
 import { Seo } from "../../../components/seo"
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
 import { CgChevronRight as ChevronIcon } from "react-icons/cg"
+import { ChevronRightIcon } from '@chakra-ui/icons'
 import {
   productBox,
   container,
@@ -112,6 +114,24 @@ export default function Product({ data: { product, suggestions } }) {
         />
       ) : undefined}
       <div className={container}>
+      <Box>
+      <Breadcrumb paddingBottom="1.3rem" fontSize="15px" spacing="8px" separator={<ChevronRightIcon color="gray.500" />}>
+      <BreadcrumbItem>
+                  <BreadcrumbLink _hover={{color: "cyan.500",}} href="/">Home</BreadcrumbLink>
+                </BreadcrumbItem>
+                <BreadcrumbItem>
+                  <BreadcrumbLink _hover={{color: "cyan.500",}} href="/products/">Products</BreadcrumbLink>
+                </BreadcrumbItem>
+
+                <BreadcrumbItem>
+                <BreadcrumbLink _hover={{color: "cyan.500",}} href={product.productTypeSlug}>{product.productType}</BreadcrumbLink>
+                </BreadcrumbItem>
+
+                <BreadcrumbItem isCurrentPage>
+                  <BreadcrumbLink _hover={{textDecoration: "none"}} cursor="">{title}</BreadcrumbLink>
+                </BreadcrumbItem>
+              </Breadcrumb>
+              </Box>
         <div className={productBox}>
           {hasImages && (
             <div className={productImageWrapper}>
@@ -152,15 +172,14 @@ export default function Product({ data: { product, suggestions } }) {
             <span className={noImagePreview}>No Preview image</span>
           )}
           <div>
-            <div className={breadcrumb}>
-              <Link to={product.productTypeSlug}>{product.productType}</Link>
-              <ChevronIcon size={12} />
-            </div>
             <h1 className={header}>{title}</h1>
-            <p className={productDescription}>{description}</p>
             <h2 className={priceValue}>
               <span>{price}</span>
             </h2>
+            <Box maxWidth="max-content" bg="blue.200" w="100%" p={4} color="white" fontWeight="semibold">
+              33 users have been eyeing this product!
+            </Box>
+            <p className={productDescription}>{description}</p>
             <fieldset className={optionsWrapper}>
               {hasVariants &&
                 options.map(({ id, name, values }, index) => (
@@ -194,18 +213,6 @@ export default function Product({ data: { product, suggestions } }) {
                 quantity={quantity}
                 available={available}
               />
-            </div>
-            <div className={metaSection}>
-              <span className={labelFont}>Type</span>
-              <span className={tagList}>
-                <Link to={product.productTypeSlug}>{product.productType}</Link>
-              </span>
-              <span className={labelFont}>Tags</span>
-              <span className={tagList}>
-                {product.tags.map((tag) => (
-                  <Link to={`/search?t=${tag}`}>{tag}</Link>
-                ))}
-              </span>
             </div>
           </div>
         </div>

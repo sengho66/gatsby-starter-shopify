@@ -4,9 +4,13 @@ body {
 }
 
 .gatsby-image-wrapper {
-  margin: auto;
+  margin: 0;
 }
 
 .gatsby-image-wrapper [data-main-image] {
   border-radius: var(--radius-sm);
+}
+
+div#chakra-modal-3 {
+  max-width: 340px;
 }

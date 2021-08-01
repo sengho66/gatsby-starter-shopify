@@ -11,6 +11,11 @@
   padding-bottom: var(--space-sm);
 }
 
+.cartTd {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
 .remove button {
   font-size: var(--text-md);
 

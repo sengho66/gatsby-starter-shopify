@@ -77,8 +77,8 @@ export function LineItemSide({ item }) {
         image: variantImage,
         layout: "constrained",
         crop: "contain",
-        width: 42,
-        height: 42,
+        width: 80,
+        height: 80,
       }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [variantImage.src]
@@ -100,29 +100,36 @@ export function LineItemSide({ item }) {
         <Heading lineHeight="1.1" as="h2" fontSize="1.25rem">{item.title}</Heading>
         <Box>
         <Text fontSize="0.95rem">
-          {item.variant.title === "Default Title" ? "" : item.variant.title}, {price}
+          {item.variant.title === "Default Title" ? "" : item.variant.title}
         </Text>
-        </Box>
-        </Box>
-
-        </Flex>
-      </td>
-      <td className={cartTdz}>
-      <NumericInput
+        <Flex>
+        <Text fontSize="0.95rem">
+          Qty.
+        </Text>
+        <NumericInput
           disabled={loading}
           value={quantity}
           aria-label="Quantity"
           onIncrement={doIncrement}
           onDecrement={doDecrement}
           onChange={(e) => handleQuantityChange(e.currentTarget.value)}
-        />         
-</td>
+        />
+        </Flex> 
+        </Box>
+        </Box>
+
+        </Flex>
+      </td>
+
       <td className={cartTd}>
       <Box margin="auto" marginRight="0" maxWidth="47px" minHeight="42px" display="flex" bg="var(--input-background)">
           <CloseButton margin="auto" onClick={handleRemove}>
           
           </CloseButton>
         </Box>
+        <Text fontSize="0.95rem">
+          {price}
+        </Text>
       </td>
     </tr>
     </ChakraProvider>
