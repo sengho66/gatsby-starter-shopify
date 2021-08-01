@@ -3,6 +3,7 @@
   cursor: pointer;
   text-decoration: none;
   padding-bottom: var(--space-md);
+  text-align: -webkit-center;
 }
 
 .productImageStyle {
@@ -33,4 +34,26 @@
 
 .productPrice {
   color: var(--text-color-secondary);
+}
+
+@media (min-width: 859px) {
+  .productCardStyle {
+    max-width: 221px;
+    cursor: pointer;
+    text-decoration: none;
+    padding-bottom: var(--space-md);
+    text-align: -webkit-center;
+  }
+}
+
+@media (min-width: 1024px) {
+  .productCardStyle {
+    max-width: 248px;
+  }
+}
+
+@media (min-width: 1150px) {
+  .productCardStyle {
+    max-width: 232px;
+  }
 }

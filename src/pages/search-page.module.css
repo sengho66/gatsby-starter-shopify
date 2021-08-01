@@ -11,6 +11,8 @@
 
 .main {
   display: grid;
+  max-width: 1267px;
+  margin: auto;
   grid-template-columns: 1fr;
   grid-template-rows: min-content 1fr;
   grid-template-areas:
@@ -207,10 +209,43 @@
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   grid-gap: var(--space-lg);
   padding-top: var(--space-2xl);
-  padding-right: var(--size-gutter-raw);
+}
+@media (min-width: 320px) {
+  .productList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    grid-gap: var(--space-lg);
+    padding-top: var(--space-2xl);
+  }
+}
+
+@media (min-width: 859px) {
+  .productList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-gap: var(--space-lg);
+    padding-top: var(--space-2xl);
+  }
+}
+
+@media (min-width: 1150px) {
+  .productList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(253px, 1fr));
+    grid-gap: var(--space-lg);
+    padding-top: var(--space-2xl);
+  }
 }
 
 @media (min-width: 1024px) {
+
+  .productList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(253px, 1fr));
+    grid-gap: var(--space-lg);
+    padding-top: var(--space-2xl);
+  }
+
   .filterTitle {
     display: none;
   }
@@ -224,7 +259,7 @@
   }
 
   .filterStyle {
-    padding-left: var(--size-gutter-raw);
+    padding-left: var(--chakra-space-4);
     padding-right: var(--space-2xl);
     padding-top: 0;
     padding-bottom: 0;
@@ -232,7 +267,7 @@
     width: auto;
     height: auto;
   }
-
+  
   .sortIcon {
     display: none;
   }
@@ -253,8 +288,9 @@
   .main {
     grid-template-columns: max-content 1fr;
     grid-template-areas:
-      "search search"
+      "filters search"
       "filters results";
+    padding-top: var(--space-2xl);
   }
 
   .sortSelector {
@@ -276,7 +312,11 @@
   }
 }
 
-@media (min-width: 1280px) {
+@media (min-width: 1200px) {
+  .productList {
+    grid-template-columns: repeat(auto-fit, minmax(254px, 1fr));
+  }
+
   .main {
     grid-template-areas:
       "filters search"

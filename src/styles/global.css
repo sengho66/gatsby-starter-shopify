@@ -14,3 +14,24 @@ body {
 div#chakra-modal-3 {
   max-width: 340px;
 }
+
+@media (min-width: 859px) {
+  .gatsby-image-wrapper.testfirst {
+    width: 221px !important;
+    height: 221px !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .gatsby-image-wrapper.testfirst {
+    width: 248px !important;
+    height: 248px !important;
+  }
+}
+
+@media (min-width: 1150px) {
+  .gatsby-image-wrapper.testfirst {
+    width: 232px !important;
+    height: 232px !important;
+  }
+}

@@ -36,7 +36,7 @@ export function Header() {
   const bg = useColorModeValue("white", "gray.800");
   const mobileNav = useDisclosure();
   const { checkout, loading, didJustAddToCart } = React.useContext(StoreContext)
-
+  
   const items = checkout ? checkout.lineItems : []
 
   const quantity = items.reduce((total, item) => {
@@ -53,9 +53,9 @@ export function Header() {
         shadow="md"
       >
         <Flex maxW="1250px" alignItems="center" justifyContent="space-between" mx="auto">
-        <Box display={{ base: "inline-flex", md: "none" }}>
+        <Box display={{ base: "inline-flex", lg: "none" }}>
               <IconButton
-                display={{ base: "flex", md: "none" }}
+                display={{ base: "flex", lg: "none" }}
                 aria-label="Open menu"
                 fontSize="20px"
                 color={useColorModeValue("gray.800", "inherit")}
@@ -115,13 +115,13 @@ export function Header() {
               Choc
             </chakra.h1>
           </Flex>
-          <HStack display={{ base: "none", md: "flex" }} alignItems="center" spacing={1}>
+          <HStack display={{ base: "none", lg: "flex" }} alignItems="center" spacing={1}>
             <HStack
               spacing={1}
               color="gray.600"
               fontWeight="bold"
               fontSize="md"
-              display={{ base: "none", md: "inline-flex" }}
+              display={{ base: "none", lg: "inline-flex" }}
             >
               <Button
                   bg={bg}
