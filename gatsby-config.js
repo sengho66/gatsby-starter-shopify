@@ -29,6 +29,15 @@ module.exports = {
          */
         isUsingColorMode: true,
       },
+    },
+    {
+      resolve: 'gatsby-source-yotpo',
+      options: {
+      appKey: process.env.YOTPO_APP_KEY,
+      appSecret: process.env.YOTPO_SECRET_KEY,
+      },
+    },
+    {
       resolve: "gatsby-source-shopify",
       options: {
         password: process.env.SHOPIFY_SHOP_PASSWORD,

@@ -1,9 +1,10 @@
 import * as React from "react"
 import { Link } from "gatsby"
 import CartIcon from "../icons/cart"
-import { cartButton, badge } from "./cart-button.module.css"
+import { cartButton, badge, badge1 } from "./cart-button.module.css"
 import { LineItemSide } from "../components/line-item-side"
 import { StoreContext } from "../context/store-context"
+import { formatPrice } from "../utils/format-price"
 import { Table,
   Thead,
   Heading,
@@ -64,10 +65,14 @@ export function CartButton({ quantity }) {
             >
               <DrawerOverlay />
               <DrawerContent>
-                <DrawerHeader marginBottom="-13px" paddingLeft="19px" paddingBottom="0" paddingRight="19px" paddingTop="5px" alignItems="center" justifyContent="space-between" display="flex"><Heading lineHeight="1.1" as="h2" fontSize="1.25rem">Your Cart{quantity}</Heading>
-                <DrawerCloseButton position="unset" />
+                <DrawerHeader marginBottom="-13px" paddingLeft="22px" paddingBottom="0" paddingRight="22px" paddingTop="5px" alignItems="center" justifyContent="space-between" display="flex">
+                  <Box position="relative">
+                    <Heading fontWeight="600" color="cyan.600" lineHeight="1.1" as="h2" fontSize="1.25rem">Your Cart</Heading>
+                    <div className={badge1}>{quantity}</div>
+                  </Box>                
+                <DrawerCloseButton _focus="none" _active="none" position="unset" />
                 </DrawerHeader>      
-                <DrawerBody paddingLeft="19px" paddingRight="19px" size="sm">
+                <DrawerBody paddingLeft="22px" paddingRight="22px" size="sm">
                 {emptyCart ? (
                   <div>
                     <h1>Your cart is empty</h1>
@@ -81,7 +86,7 @@ export function CartButton({ quantity }) {
                     </div>
                   ) : (
                 <>  
-                <Table borderBottom="1px" borderColor="gray.100" size="sm">
+                <Table size="sm">
         <Thead>
           <Tr>
             <Th paddingLeft="0"></Th>
@@ -101,18 +106,43 @@ export function CartButton({ quantity }) {
       )}
                 </DrawerBody>
       
-                <DrawerFooter>
+                <DrawerFooter borderTop="1px" borderColor="gray.100" paddingLeft="22px" paddingRight="22px" flexDirection="column">
                 {emptyCart ? (
-                  <Button variant="outline" mr={3} onClick={onClose}>
-                  Cancel
+                  <Button _active="none" _focus="none" _hover={{bgGradient: "linear(to-r, cyan.700,cyan.700)",}} fontWeight="600" height="48px" textTransform="uppercase" bgGradient="linear(to-r, cyan.600,cyan.700)" color="#fff" marginBottom="12px" target="/cart" padding="0" width="100%" onClick={onClose} variant="outline">
+                  Continue Shopping
                 </Button>
                   ) : (
                 <>
-                <Button variant="outline" mr={3} onClick={onClose}>
-                    Cancel
+                <Box width="100%">
+                <Box marginBottom="32px" display="inline-flex" justifyContent="space-between" width="100%">
+                  <Box width="100%" textAlign="left">
+                  <Text fontWeight="600" color="cyan.600" fontSize="1.3em">
+                    Subtotal
+                  </Text>
+                  </Box>
+                  <Spacer />
+<Box width="100%" textAlign="right">
+                  <Text fontWeight="600" color="cyan.600" fontSize="1.3em">
+                  {formatPrice(
+                      checkout.subtotalPriceV2.currencyCode,
+                      checkout.subtotalPriceV2.amount
+                    )}
+                  </Text>
+                  </Box>
+                </Box>
+                </Box>
+                <Button _active="none" _focus="none" _hover={{bgGradient: "linear(to-r, yellow.400,yellow.400)",}} fontWeight="600" height="48px" textTransform="uppercase" bgGradient="linear(to-r, yellow.300,yellow.400)" marginBottom="4px" padding="0" width="100%" variant="outline" disabled={loading} onClick={handleCheckout}>
+                    Checkout
                   </Button>
-                  <Button variant="outline" mr={3} onClick={onClose}>
-                    Save
+                  <Box marginBottom="4px" height="35px" width="100%">
+                    <Link to="/cart">
+                  <Button _active="none" _focus="none" _hover={{bgGradient: "linear(to-r, cyan.700,cyan.700)",}} fontWeight="600" height="35px" textTransform="uppercase" bgGradient="linear(to-r, cyan.600,cyan.700)" color="#fff" target="/cart" padding="0" width="100%" variant="outline">
+                    Cart
+                  </Button>
+                  </Link>
+                  </Box>
+                  <Button _active="none" _focus="none" _hover={{bgGradient: "linear(to-r, cyan.700,cyan.700)",}} fontWeight="600" height="48px" textTransform="uppercase" bgGradient="linear(to-r, cyan.600,cyan.700)" color="#fff" marginBottom="12px" target="/cart" padding="0" width="100%" onClick={onClose} variant="outline">
+                    Continue Shopping
                   </Button>
                 </>
       )}                  

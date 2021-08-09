@@ -5,7 +5,7 @@ import { formatPrice } from "../utils/format-price"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { getShopifyImage } from "gatsby-source-shopify"
 import DeleteIcon from "../icons/delete"
-import { Spacer, CloseButton, Text, Box, Heading, Flex, ChakraProvider } from "@chakra-ui/react"
+import { Tr, Link, Spacer, CloseButton, Text, Box, Heading, Flex, ChakraProvider } from "@chakra-ui/react"
 
 import { NumericInput } from "./numeric-input"
 import {
@@ -86,7 +86,7 @@ export function LineItemSide({ item }) {
 
   return (
     <ChakraProvider>
-    <tr className={cartTr}>
+    <Tr borderTop="1px" borderColor="gray.100" className={cartTr}>
       <td className={cartTd}>
       <Flex alignItems="end" align="center">
         {image && (
@@ -96,10 +96,10 @@ export function LineItemSide({ item }) {
             alt={variantImage.altText ?? item.variant.title}
           />
         )}
-        <Box display="block">
-        <Heading lineHeight="1.1" as="h2" fontSize="1.25rem">{item.title}</Heading>
+        <Box maxWidth="216.98px" paddingLeft="22px" display="block">
+        <Heading color="cyan.600" lineHeight="1.1" as="h2" fontSize="0.95rem">{item.title}</Heading>
         <Box>
-        <Text fontSize="0.95rem">
+        <Text fontSize="0.9rem">
           {item.variant.title === "Default Title" ? "" : item.variant.title}
         </Text>
         <Flex>
@@ -122,16 +122,18 @@ export function LineItemSide({ item }) {
       </td>
 
       <td className={cartTd}>
-      <Box margin="auto" marginRight="0" maxWidth="47px" minHeight="42px" display="flex" bg="var(--input-background)">
+      <Box flex="1" maxWidth="100px" margin="auto" marginRight="0" maxWidth="47px" minHeight="42px" display="flex" bg="var(--input-background)">
           <CloseButton margin="auto" onClick={handleRemove}>
           
           </CloseButton>
         </Box>
+        <Box>
         <Text fontSize="0.95rem">
           {price}
         </Text>
+        </Box>
       </td>
-    </tr>
+    </Tr>
     </ChakraProvider>
   )
 }

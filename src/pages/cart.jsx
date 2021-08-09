@@ -4,6 +4,7 @@ import { Layout } from "../components/layout"
 import { StoreContext } from "../context/store-context"
 import { LineItem } from "../components/line-item"
 import { formatPrice } from "../utils/format-price"
+import { Box } from "@chakra-ui/react"
 import {
   table,
   wrap,
@@ -45,7 +46,9 @@ export default function CartPage() {
           </div>
         ) : (
           <>
-            <h1 className={title}>Your cart</h1>
+            <h1 className={title}>Shopping Cart</h1>
+            <Box>
+              <Box>
             <table className={table}>
               <thead>
                 <tr>
@@ -113,6 +116,11 @@ export default function CartPage() {
             >
               Checkout
             </button>
+            </Box>
+            <Box>
+              
+            </Box>
+            </Box>
           </>
         )}
       </div>

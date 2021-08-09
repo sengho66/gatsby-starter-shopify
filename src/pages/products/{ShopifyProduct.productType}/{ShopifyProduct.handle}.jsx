@@ -2,15 +2,18 @@ import * as React from "react"
 import { graphql, Link } from "gatsby"
 import { Layout } from "../../../components/layout"
 import isEqual from "lodash.isequal"
+import { ProductReviews } from "../../../components/product-reviews"
+import { SuggestListing } from "../../../components/suggest-listing"
 import { GatsbyImage, getSrc } from "gatsby-plugin-image"
 import { StoreContext } from "../../../context/store-context"
 import { AddToCart } from "../../../components/add-to-cart"
 import { NumericInput } from "../../../components/numeric-input"
 import { formatPrice } from "../../../utils/format-price"
 import { Seo } from "../../../components/seo"
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
+import { Tabs, TabList, Tab, TabPanels, TabPanel, Text, Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink } from "@chakra-ui/react"
 import { CgChevronRight as ChevronIcon } from "react-icons/cg"
 import { ChevronRightIcon } from '@chakra-ui/icons'
+import { ComponentName } from "../../../components/product-metafields"
 import {
   productBox,
   container,
@@ -31,14 +34,18 @@ import {
   productDescription,
 } from "./product-page.module.css"
 
-export default function Product({ data: { product, suggestions } }) {
+export default function Product({ data: { product, suggestions, ratings, reviews } }) {
   const {
     options,
     variants,
     variants: [initialVariant],
     priceRangeV2,
+    slug,
     title,
     description,
+    metafields,
+    yotpoProductBottomline,
+    allYotpoProductReview,
     images,
     images: [firstImage],
   } = product
@@ -176,6 +183,13 @@ export default function Product({ data: { product, suggestions } }) {
             <h2 className={priceValue}>
               <span>{price}</span>
             </h2>
+            <span>{ratings.productIdentifier}</span>
+            {metafields.map(({ namespace, value }) => (
+              <li>{namespace}
+                <span>{value}</span>
+              </li>
+            ))}
+
             <Box maxWidth="max-content" bg="blue.200" w="100%" p={4} color="white" fontWeight="semibold">
               33 users have been eyeing this product!
             </Box>
@@ -216,6 +230,31 @@ export default function Product({ data: { product, suggestions } }) {
             </div>
           </div>
         </div>
+        <Box>
+            <Tabs>
+
+              <TabList justifyContent="center">
+                            {metafields.map(({ namespace, value }) => (
+
+                <Tab>{namespace}</Tab>
+                ))}
+
+                </TabList>
+                <TabPanels display="flex" justifyContent="center">
+                {metafields.map(({ namespace, value }) => (
+
+                <TabPanel>
+                <Box dangerouslySetInnerHTML={{ __html: value }}></Box>
+                </TabPanel>
+                                          ))}
+
+              </TabPanels>
+            </Tabs>
+                        </Box>
+        <div>
+        <h1 className={title}>You May Also Like</h1>
+        <SuggestListing products={suggestions.nodes} />
+        </div>
       </div>
     </Layout>
   )
@@ -227,6 +266,10 @@ export const query = graphql`
       title
       description
       productType
+      metafields {
+        namespace
+        value
+      }
       productTypeSlug: gatsbyPath(
         filePath: "/products/{ShopifyProduct.productType}"
       )
@@ -264,11 +307,28 @@ export const query = graphql`
       }
     }
     suggestions: allShopifyProduct(
-      limit: 3
+      limit: 20
       filter: { productType: { eq: $productType }, id: { ne: $id } }
     ) {
       nodes {
         ...ProductCard
+      }
+    }
+    ratings: yotpoProductBottomline {
+      totalReviews
+      score
+    }
+    reviews: allYotpoProductReview {
+      nodes {
+        productIdentifier
+        title
+        score
+        sentiment
+        votesUp
+        votesDown
+        createdAt
+        name
+        reviewerType
       }
     }
   }
